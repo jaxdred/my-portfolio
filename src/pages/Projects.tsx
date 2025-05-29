@@ -7,7 +7,7 @@ const projects = [
     title: "LIGAW Horror Game",
     description:
       "A mobile horror/puzzle game for android. Mainly developed through Unity Game Engine using C#.",
-    thumbnail: import.meta.env.BASE_URL + "projects/ligaw/SC1.jpg",
+    thumbnail: import.meta.env.BASE_URL + "projects/ligaw/SC8.png",
     images: [
       import.meta.env.BASE_URL + "projects/ligaw/SC1.png",
       import.meta.env.BASE_URL + "projects/ligaw/SC2.png",
