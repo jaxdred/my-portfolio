@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Link, Element } from "react-scroll";
+import Home from "./pages/Home";
 import About from "./pages/About";
 import Projects from "./pages/Projects";
-import { FaFacebookF, FaLinkedinIn} from "react-icons/fa";
+import { FaFacebookF, FaLinkedinIn } from "react-icons/fa";
 import { SiIndeed } from "react-icons/si";
+import ScrollProgress from "./components/ScrollProgress"; // 🟢 Import here
 
 function App() {
   const [showNavbar, setShowNavbar] = useState(false);
@@ -45,6 +47,9 @@ function App() {
 
   return (
     <div className="bg-[#0f2f28] text-white font-sora scroll-smooth relative overflow-x-hidden">
+      {/* 🔵 Scroll Progress Bar */}
+      <ScrollProgress />
+
       {/* Background Design */}
       <div className="absolute top-0 left-0 w-full h-full z-0 opacity-20 pointer-events-none">
         <svg
@@ -79,7 +84,7 @@ function App() {
                 smooth={true}
                 duration={500}
                 offset={-80}
-                activeClass="text-emerald-400 font-bold"
+                activeClass="text-emerald-500 font-bold"
                 className="cursor-pointer text-white/80 hover:text-teal-400 transition-colors duration-200 capitalize"
               >
                 {section}
@@ -91,22 +96,7 @@ function App() {
 
       {/* Hero Section */}
       <Element name="home">
-        <motion.section
-          id="home"
-          className="min-h-screen flex flex-col justify-center items-center text-center px-4 relative z-10"
-          initial={{ opacity: 0, y: 100 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.2, ease: "easeOut" }}
-        >
-          <h1 className="text-4xl md:text-6xl font-bold mb-6 text-teal-300">
-            Hi, I'm Jarren Red P. Sanchez
-          </h1>
-          <p className="text-lg md:text-xl max-w-2xl text-white/90 leading-relaxed">
-            A passionate Computer Science graduate with a love for crafting
-            elegant websites and mobile apps, and a proven ability to learn and
-            adapt rapidly.
-          </p>
-        </motion.section>
+        <Home />
       </Element>
 
       {/* About Section */}
@@ -127,8 +117,6 @@ function App() {
       <Element name="footer">
         <footer className="px-6 py-10 bg-[#0d251f] text-white/80 relative z-10">
           <div className="flex justify-between items-center flex-col md:flex-row gap-6">
-
-            
             <div className="flex gap-4 text-2xl">
               <a
                 href="https://www.facebook.com/Reddddddd3/"
@@ -170,9 +158,7 @@ function App() {
               <div className="text-sm text-emerald-400 font-mono tracking-wide">
                 {time}
               </div>
-              <div className="text-xs text-white/70 font-light">
-                {date}
-              </div>
+              <div className="text-xs text-white/70 font-light">{date}</div>
             </div>
           </div>
         </footer>

@@ -20,6 +20,7 @@ import {
 } from "react-icons/si";
 import { FaJava } from "react-icons/fa";
 import { DiVisualstudio } from "react-icons/di";
+import RevealOnScroll from "../components/RevealOnScroll";
 
 const personalInfo = [
   { label: "Name", value: "Jarren Red P. Sanchez" },
@@ -81,76 +82,84 @@ export default function About() {
         </defs>
       </svg>
 
-      <h2 className="text-4xl font-semibold mb-6 text-white text-center">
-        About Me
-      </h2>
+      <RevealOnScroll>
+        <h2 className="text-4xl font-semibold mb-6 text-white text-center">
+          About Me
+        </h2>
+      </RevealOnScroll>
 
       {/* About Me paragraph */}
-      <p className="max-w-5xl mx-auto text-lg text-white mb-16 leading-relaxed text-justify">
-        I am passionate about using technology to solve problems through
-        critical thinking and innovation. I am tech savvy and continuously
-        learning new skills to make better use of technology. With 4 years of
-        experience pursuing a Bachelor of Science in Computer Science, I have
-        developed strong skills in web and mobile app development, networking
-        (from Cisco Networking Academy), and knowledge about hardware. I am a
-        fast learner, quick to adapt, and open to opportunities as a developer
-        in various domains.
-      </p>
+      <RevealOnScroll>
+        <p className="max-w-5xl mx-auto text-lg text-white mb-16 leading-relaxed text-justify">
+          I am passionate about using technology to solve problems through
+          critical thinking and innovation. I am tech savvy and continuously
+          learning new skills to make better use of technology. With 4 years of
+          experience pursuing a Bachelor of Science in Computer Science, I have
+          developed strong skills in web and mobile app development, networking
+          (from Cisco Networking Academy), and knowledge about hardware. I am a
+          fast learner, quick to adapt, and open to opportunities as a developer
+          in various domains.
+        </p>
+      </RevealOnScroll>
 
       {/* Personal Info Grid */}
-      <div className="mb-16 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
-        {personalInfo.map(({ label, value }) => (
-          <div
-            key={label}
-            className="bg-white bg-opacity-10 rounded-lg p-6 break-words"
-          >
-            <p className="text-sm uppercase tracking-widest text-gray-300 mb-1">
-              {label}
-            </p>
-            <p className="text-white font-semibold break-words">{value}</p>
-          </div>
-        ))}
-      </div>
+      <RevealOnScroll>
+        <div className="mb-16 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
+          {personalInfo.map(({ label, value }) => (
+            <div
+              key={label}
+              className="bg-white bg-opacity-10 rounded-lg p-6 break-words"
+            >
+              <p className="text-sm uppercase tracking-widest text-gray-300 mb-1">
+                {label}
+              </p>
+              <p className="text-white font-semibold break-words">{value}</p>
+            </div>
+          ))}
+        </div>
+      </RevealOnScroll>
 
       {/* Languages & Frameworks */}
-      <div className="max-w-5xl mx-auto">
-        <div className="mb-12">
-          <h3 className="text-2xl font-semibold mb-6 text-white text-center">
-            Languages & Frameworks
-          </h3>
-          <div className="grid grid-cols-7 gap-6">
-            {languages.map(({ name, icon: Icon }) => (
-              <div
-                key={name}
-                className="flex flex-col items-center space-y-1 text-center text-white cursor-pointer transition-transform duration-300 hover:scale-110 hover:drop-shadow-lg"
-                title={name}
-              >
-                <Icon size={36} className="text-teal-400" />
-                <span className="text-sm">{name}</span>
-              </div>
-            ))}
+      <RevealOnScroll>
+        <div className="max-w-5xl mx-auto">
+          <div className="mb-12">
+            <h3 className="text-2xl font-semibold mb-6 text-white text-center">
+              Languages & Frameworks
+            </h3>
+            <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-7 gap-6">
+              {languages.map(({ name, icon: Icon }) => (
+                <div
+                  key={name}
+                  className="flex flex-col items-center space-y-1 text-center text-white cursor-pointer transition-transform duration-300 hover:scale-110 hover:drop-shadow-lg"
+                  title={name}
+                >
+                  <Icon size={36} className="text-teal-400" />
+                  <span className="text-sm">{name}</span>
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
 
-        {/* Tools & Editors */}
-        <div className="mt-16">
-          <h3 className="text-2xl font-semibold mb-6 text-white text-center">
-            Tools & Editors
-          </h3>
-          <div className="grid grid-cols-7 gap-6">
-            {tools.map(({ name, icon: Icon }) => (
-              <div
-                key={name}
-                className="flex flex-col items-center space-y-1 text-center text-white cursor-pointer transition-transform duration-300 hover:scale-110 hover:drop-shadow-lg"
-                title={name}
-              >
-                <Icon size={36} className="text-green-400" />
-                <span className="text-sm">{name}</span>
-              </div>
-            ))}
+          {/* Tools & Editors */}
+          <div className="mt-16">
+            <h3 className="text-2xl font-semibold mb-6 text-white text-center">
+              Tools & Editors
+            </h3>
+            <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-7 gap-6">
+              {tools.map(({ name, icon: Icon }) => (
+                <div
+                  key={name}
+                  className="flex flex-col items-center space-y-1 text-center text-white cursor-pointer transition-transform duration-300 hover:scale-110 hover:drop-shadow-lg"
+                  title={name}
+                >
+                  <Icon size={36} className="text-green-400" />
+                  <span className="text-sm">{name}</span>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
-      </div>
+      </RevealOnScroll>
     </div>
   );
 }

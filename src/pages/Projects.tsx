@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
+import RevealOnScroll from "../components/RevealOnScroll";
 
 const projects = [
   {
@@ -71,11 +72,14 @@ export default function Projects() {
   };
 
   return (
+    
     <section className="w-full text-white py-16 px-6 md:px-12 relative z-10">
+      <RevealOnScroll>
       <h2 className="text-4xl font-semibold mb-10 text-center text-teal-300">
         Projects
       </h2>
 
+      
       <div className="flex flex-col lg:flex-row gap-8">
         {/* Spotlight Section */}
         <div className="w-full lg:w-2/3 relative overflow-hidden rounded-2xl shadow-xl bg-black bg-opacity-20">
@@ -143,6 +147,7 @@ export default function Projects() {
           ))}
         </div>
       </div>
+      </RevealOnScroll>
     </section>
   );
 }
