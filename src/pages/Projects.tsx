@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import RevealOnScroll from "../components/RevealOnScroll";
@@ -45,30 +45,29 @@ export default function Projects() {
 
   const selectedProject = projects[selectedIndex];
 
-  const resetAutoSlide = useCallback(() => {
+    useEffect(() => {
     if (timeoutRef.current) clearInterval(timeoutRef.current);
-    timeoutRef.current = setInterval(() => {
-      setSlideIndex((prev) => (prev + 1) % selectedProject.images.length);
-    }, 5000);
-  }, [selectedProject.images.length]);
 
-  useEffect(() => {
-    resetAutoSlide();
+    timeoutRef.current = setInterval(() => {
+      setSlideIndex((prev) => {
+        const length = projects[selectedIndex].images.length;
+        return (prev + 1) % length;
+      });
+    }, 5000);
+
     return () => {
       if (timeoutRef.current) clearInterval(timeoutRef.current);
     };
-  }, [resetAutoSlide]);
+  }, [selectedIndex, slideIndex]);
 
   const nextSlide = () => {
     setSlideIndex((prev) => (prev + 1) % selectedProject.images.length);
-    resetAutoSlide();
   };
 
   const prevSlide = () => {
     setSlideIndex((prev) =>
       prev === 0 ? selectedProject.images.length - 1 : prev - 1
     );
-    resetAutoSlide();
   };
 
   return (

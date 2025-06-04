@@ -84,7 +84,7 @@ function App() {
                 smooth={true}
                 duration={500}
                 offset={-80}
-                activeClass="text-emerald-500 font-bold"
+                activeClass="!text-emerald-500 font-bold"
                 className="cursor-pointer text-white/80 hover:text-teal-400 transition-colors duration-200 capitalize"
               >
                 {section}

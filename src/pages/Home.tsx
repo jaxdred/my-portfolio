@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
 
 const words = [
@@ -6,8 +6,13 @@ const words = [
   "Software Developer",
   "Mobile App Developer",
   "Game Developer",
-  "IT Support",
+  "IT Support Specialist",
 ];
+
+// Helper function to decide between "a" and "an"
+function getArticle(word: string) {
+  return /^[aeiou]/i.test(word) ? "an" : "a";
+}
 
 function ManualTypewriter() {
   const [text, setText] = useState("");
@@ -31,7 +36,7 @@ function ManualTypewriter() {
           setTimeout(() => {
             setPause(false);
             setDeleting(true);
-          }, 1500); // <- Delay after typing a full word
+          }, 1500);
         }
       } else {
         setText(currentWord.slice(0, charIndex - 1));
@@ -48,7 +53,17 @@ function ManualTypewriter() {
 
   return (
     <h2 className="text-2xl md:text-3xl font-semibold text-white/90 mb-6">
-      I'm a <span className="text-emerald-400">{text}|</span>
+      I'm {getArticle(words[wordIndex])}{" "}
+      <span className="text-emerald-400 drop-shadow-glow">
+        {text}
+        <span
+          className={`inline-block w-[1px] ml-1 ${
+            pause ? "animate-blink" : ""
+          }`}
+        >
+          |
+        </span>
+      </span>
     </h2>
   );
 }
@@ -84,21 +99,29 @@ export default function Home() {
         {/* See My Resume Button */}
         <button
           onClick={() => setIsResumeOpen(true)}
-          className="px-6 py-3 bg-teal-500 hover:bg-teal-600 text-white rounded-md transition"
+          className="px-6 py-3 bg-emerald-500 hover:bg-emerald-600 text-white rounded-md shadow-md transition-transform duration-300 ease-in-out hover:scale-105 hover:shadow-emerald-400/80 focus:outline-none"
         >
           See My Resume
         </button>
       </motion.section>
 
       {/* Resume Modal */}
+      <AnimatePresence>
       {isResumeOpen && (
-        <div
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
           className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50"
-          onClick={() => setIsResumeOpen(false)} // close modal on outside click
+          onClick={() => setIsResumeOpen(false)}
         >
-          <div
+          <motion.div
+            initial={{ scale: 0.8, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            exit={{ scale: 0.8, opacity: 0 }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
             className="bg-white rounded-lg max-w-3xl w-full max-h-[80vh] p-4 relative flex justify-center items-center"
-            onClick={(e) => e.stopPropagation()} // prevent closing when clicking inside modal
+            onClick={(e) => e.stopPropagation()}
           >
             <button
               onClick={() => setIsResumeOpen(false)}
@@ -112,9 +135,10 @@ export default function Home() {
               alt="Resume"
               className="max-h-[75vh] object-contain"
             />
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       )}
+      </AnimatePresence>
     </>
   );
 }
